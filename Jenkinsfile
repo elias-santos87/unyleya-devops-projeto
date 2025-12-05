@@ -85,13 +85,17 @@ pipeline {
             }
         }
         
-        stage('✅ 6. Quality Gate') {
+     stage('Quality Gate') {
     steps {
-        timeout(time: 15, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
+        script {
+            sleep 10 // evita o bug de consulta precoce
+            timeout(time: 2, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
         }
     }
 }
+
 
         
         stage('📦 7. Empacotamento') {
