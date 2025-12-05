@@ -86,21 +86,10 @@ pipeline {
         }
         
         stage('✅ 6. Quality Gate') {
-            steps {
-                echo '➤ Aguardando resultado do Quality Gate...'
-                timeout(time: 5, unit: 'MINUTES') {
-                    script {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            echo "⚠️  Quality Gate Status: ${qg.status}"
-                            error "❌ Quality Gate falhou: ${qg.status}"
-                        } else {
-                            echo "✓ Quality Gate APROVADO: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }
+            timeout(time: 15, unit: 'MINUTES') {
+        waitForQualityGate abortPipeline: true
+    }
+}
         
         stage('📦 7. Empacotamento') {
             steps {
