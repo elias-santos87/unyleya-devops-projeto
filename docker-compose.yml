@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # Jenkins - Servidor CI/CD
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins-unyleya
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./workspace:/workspace
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    networks:
+      - devops-network
+    restart: unless-stopped
+
+  # SonarQube - Análise de Código
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube-unyleya
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    networks:
+      - devops-network
+    restart: unless-stopped
+
+  # Servidor Web - DESENVOLVIMENTO
+  webapp-dev:
+    image: nginx:alpine
+    container_name: webapp-dev
+    ports:
+      - "8081:80"
+    volumes:
+      - ./workspace/dev:/usr/share/nginx/html:ro
+    networks:
+      - devops-network
+    restart: unless-stopped
+
+  # Servidor Web - PRODUÇÃO
+  webapp-prod:
+    image: nginx:alpine
+    container_name: webapp-prod
+    ports:
+      - "8082:80"
+    volumes:
+      - ./workspace/prod:/usr/share/nginx/html:ro
+    networks:
+      - devops-network
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
+    driver: local
+  sonarqube_data:
+    driver: local
+  sonarqube_extensions:
+    driver: local
+  sonarqube_logs:
+    driver: local
+
+networks:
+  devops-network:
+    driver: bridge

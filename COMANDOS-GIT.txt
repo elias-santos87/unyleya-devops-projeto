@@ -1,0 +1,249 @@
+═══════════════════════════════════════════════════════════
+COMANDOS GIT UTILIZADOS NO PROJETO
+═══════════════════════════════════════════════════════════
+
+Aluno: [SEU NOME COMPLETO]
+Projeto: Unyleya DevOps - Pipeline CI/CD
+Data: [DATA ATUAL]
+
+═══════════════════════════════════════════════════════════
+1. CONFIGURAÇÃO INICIAL
+═══════════════════════════════════════════════════════════
+
+# Configurar nome do usuário
+git config --global user.name "Seu Nome Completo"
+
+# Configurar email
+git config --global user.email "seu.email@example.com"
+
+# Verificar configurações
+git config --list
+
+═══════════════════════════════════════════════════════════
+2. INICIALIZAÇÃO DO REPOSITÓRIO LOCAL
+═══════════════════════════════════════════════════════════
+
+# Criar pasta do projeto
+mkdir unyleya-devops-projeto
+cd unyleya-devops-projeto
+
+# Inicializar repositório Git
+git init
+
+# Verificar status
+git status
+
+═══════════════════════════════════════════════════════════
+3. CRIAR ESTRUTURA DE PASTAS
+═══════════════════════════════════════════════════════════
+
+# Criar estrutura do projeto
+mkdir -p workspace/dev
+mkdir -p workspace/prod
+mkdir -p src/main/webapp
+mkdir -p src/test/java/br/com/unyleya
+
+# Ver estrutura criada
+tree -L 3
+# ou
+find . -type d
+
+═══════════════════════════════════════════════════════════
+4. ADICIONAR ARQUIVOS AO STAGING
+═══════════════════════════════════════════════════════════
+
+# Ver arquivos não rastreados
+git status
+
+# Adicionar todos os arquivos
+git add .
+
+# Ou adicionar arquivos específicos
+git add docker-compose.yml
+git add pom.xml
+git add Jenkinsfile
+git add src/main/webapp/index.html
+git add src/test/java/br/com/unyleya/AppTest.java
+git add COMANDOS-GIT.txt
+
+# Verificar o que foi adicionado
+git status
+
+═══════════════════════════════════════════════════════════
+5. FAZER COMMIT
+═══════════════════════════════════════════════════════════
+
+# Commit completo do projeto
+git commit -m "feat: implementa pipeline CI/CD completa
+
+- Adiciona infraestrutura Docker (Jenkins + SonarQube + Nginx)
+- Implementa aplicação web responsiva
+- Cria 5 testes automatizados
+- Configura pipeline CI/CD unificada
+- Integra SonarQube com quality gate
+- Adiciona aprovação manual para produção
+- Deploy automático em DEV e manual em PROD
+
+Aluno: [SEU NOME]
+Disciplina: Engenheiro DevOps - Unidade 2
+Data: $(date +'%d/%m/%Y')"
+
+═══════════════════════════════════════════════════════════
+6. CONECTAR COM REPOSITÓRIO REMOTO (GITHUB)
+═══════════════════════════════════════════════════════════
+
+# Adicionar repositório remoto
+git remote add origin https://github.com/SEU-USUARIO/unyleya-devops-projeto.git
+
+# Verificar remote
+git remote -v
+
+# Renomear branch para main (se necessário)
+git branch -M main
+
+═══════════════════════════════════════════════════════════
+7. ENVIAR PARA GITHUB (PUSH)
+═══════════════════════════════════════════════════════════
+
+# Primeiro push
+git push -u origin main
+
+# Próximos pushes
+git push origin main
+
+═══════════════════════════════════════════════════════════
+8. VERIFICAR HISTÓRICO
+═══════════════════════════════════════════════════════════
+
+# Ver log completo
+git log
+
+# Ver log resumido (uma linha por commit)
+git log --oneline
+
+# Ver últimos 5 commits
+git log -5
+
+# Ver log com gráfico
+git log --oneline --graph --all
+
+# Ver diferenças
+git diff
+
+═══════════════════════════════════════════════════════════
+9. ATUALIZAR REPOSITÓRIO LOCAL
+═══════════════════════════════════════════════════════════
+
+# Baixar alterações do repositório remoto
+git fetch origin
+
+# Baixar e mesclar alterações
+git pull origin main
+
+═══════════════════════════════════════════════════════════
+10. COMANDOS ÚTEIS
+═══════════════════════════════════════════════════════════
+
+# Ver branches
+git branch
+
+# Ver arquivos rastreados
+git ls-files
+
+# Ver último commit
+git show
+
+# Ver informações do repositório
+git remote show origin
+
+# Ver diferenças entre arquivos
+git diff arquivo.txt
+
+# Ver histórico de um arquivo específico
+git log -- caminho/para/arquivo.txt
+
+═══════════════════════════════════════════════════════════
+11. SEQUÊNCIA COMPLETA USADA NO PROJETO
+═══════════════════════════════════════════════════════════
+
+# Passo a passo completo:
+
+cd unyleya-devops-projeto
+git init
+git config user.name "Seu Nome"
+git config user.email "seu.email@example.com"
+
+# Criar todos os arquivos...
+# (index.html, pom.xml, AppTest.java, Jenkinsfile, etc)
+
+git add .
+git status
+
+git commit -m "feat: projeto completo Unyleya DevOps CI/CD
+
+- Pipeline CI/CD automatizada
+- Integração com SonarQube
+- Deploy em DEV e PROD
+- Aprovação manual implementada
+
+Aluno: [SEU NOME]"
+
+git remote add origin https://github.com/SEU-USUARIO/unyleya-devops-projeto.git
+git branch -M main
+git push -u origin main
+
+git log --oneline
+
+═══════════════════════════════════════════════════════════
+12. BOAS PRÁTICAS
+═══════════════════════════════════════════════════════════
+
+TIPOS DE COMMIT:
+- feat: nova funcionalidade
+- fix: correção de bug
+- docs: documentação
+- test: testes
+- ci: CI/CD
+- chore: tarefas gerais
+
+EXEMPLOS:
+git commit -m "feat: adiciona página de login"
+git commit -m "fix: corrige bug no formulário"
+git commit -m "docs: atualiza README"
+git commit -m "test: adiciona testes unitários"
+git commit -m "ci: configura pipeline Jenkins"
+
+═══════════════════════════════════════════════════════════
+13. COMANDOS DE EMERGÊNCIA
+═══════════════════════════════════════════════════════════
+
+# Desfazer alterações não commitadas
+git checkout -- arquivo.txt
+
+# Remover do staging (sem perder alterações)
+git reset HEAD arquivo.txt
+
+# Desfazer último commit (mantém alterações)
+git reset --soft HEAD~1
+
+# Desfazer último commit (descarta alterações)
+git reset --hard HEAD~1
+
+# Ver comandos executados
+git reflog
+
+═══════════════════════════════════════════════════════════
+RESUMO DOS PRINCIPAIS COMANDOS
+═══════════════════════════════════════════════════════════
+
+git init                    # Inicializar repositório
+git add .                   # Adicionar todos arquivos
+git commit -m "mensagem"    # Fazer commit
+git push origin main        # Enviar para GitHub
+git status                  # Ver status
+git log --oneline           # Ver histórico
+git pull origin main        # Atualizar local
+
+═══════════════════════════════════════════════════════════
+FIM DA DOCUMENTAÇÃO
+═══════════════════════════════════════════════════════════
